@@ -25,4 +25,8 @@ public class Bill {
     private List<ProductItem> productItems;
     @Transient
     private Customer customer;
+
+    public Long getCustomerID() {
+        return customerId;
+    }
 }

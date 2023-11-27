@@ -1,5 +1,6 @@
 package org.sid.billingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ public class ProductItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Bill bill;
     private Long productId;
     private double price;
@@ -25,4 +27,7 @@ public class ProductItem {
     @Transient
     private Product product;
 
+    public Long getProductID() {
+        return productId;
+    }
 }
