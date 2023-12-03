@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -13,7 +15,7 @@ import {ProductService} from "../services/product.service";
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit{
-  products: Array<any> = [];
+  products: Array<Product> = [];
 
   constructor(private productService: ProductService) {}
 
@@ -27,15 +29,10 @@ export class ProductsComponent implements OnInit{
         next : data => {this.products = data},
         error : error => {console.log(error)}
       });
-    // this.http.get<Array<any>>('http://localhost:8089/products')
-    //   .subscribe({
-    //     next : data => {this.products = data},
-    //     error : error => {console.log(error)}
-    //   });
   }
 
 
-  handleCheckProduct(product: any) {
+  handleCheckProduct(product: Product) {
     this.productService.checkProduct(product)
       .subscribe({
         next : updated => {
@@ -43,16 +40,17 @@ export class ProductsComponent implements OnInit{
         },
         error : error => {console.log(error)}
       });
-    // this.http.patch<any>(`http://localhost:8089/products/${product.id}`,
-    //   {checked: !product.checked})
-    //   .subscribe({
-    //     next : updated => {
-    //       product.checked = updated.checked;
-    //     },
-    //     error : error => {console.log(error)}
-    //   });
-
   }
 
 
+  handleDeleteProduct(product: Product) {
+    if (confirm(`Are you sure you want to delete ${product.name}?`))
+    this.productService.deleteProduct(product)
+      .subscribe({
+        next : value => {
+          this.products = this.products.filter(p => p.id !== product.id);
+        }
+      });
+
+  }
 }

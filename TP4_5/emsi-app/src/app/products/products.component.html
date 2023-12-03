@@ -16,6 +16,9 @@
           <td>
             <button class="btn btn-success" (click)="handleCheckProduct(product)" ><i [class]="product.checked?'bi bi-hand-thumbs-up':'bi bi-hand-thumbs-down'"></i></button>
           </td>
+          <td>
+            <button class="btn btn-danger" (click)="handleDeleteProduct(product)" ><i class="bi bi-trash"></i></button>
+          </td>
         </tbody>
       </table>
     </div>

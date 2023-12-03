@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Computer",
       "price": 1000,
-      "checked": false
+      "checked": true
     },
     {
       "id": 2,
       "name": "Monitor",
       "price": 300,
-      "checked": true
+      "checked": false
     },
     {
       "id": 3,
