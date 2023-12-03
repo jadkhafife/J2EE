@@ -2,18 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-products',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    FormsModule
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit{
   products: Array<Product> = [];
+  public keyword!: String;
 
   constructor(private productService: ProductService) {}
 
@@ -22,7 +25,7 @@ export class ProductsComponent implements OnInit{
   }
 
   getProducts(): void {
-    this.productService.getProducts()
+    this.productService.getProducts(1,3)
       .subscribe({
         next : data => {this.products = data},
         error : error => {console.log(error)}
@@ -50,5 +53,13 @@ export class ProductsComponent implements OnInit{
         }
       });
 
+  }
+
+  handleSearchProduct() {
+    this.productService.searchProduct(this.keyword)
+      .subscribe({
+        next : data => {this.products = data},
+        error : error => {console.log(error)}
+      });
   }
 }
