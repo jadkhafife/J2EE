@@ -1,1 +1,23 @@
-<p>products works!</p>
+<div class="p-3">
+  <div class="card">
+    <div class="card-body">
+      <h3>Products Component</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Checked</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let product of products">
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>
+            <button class="btn btn-success" (click)="handleCheckProduct(product)" ><i [class]="product.checked?'bi bi-hand-thumbs-up':'bi bi-hand-thumbs-down'"></i></button>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
