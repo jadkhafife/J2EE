@@ -2,6 +2,25 @@
   <div class="card">
     <div class="card-body">
       <h3>New Product Component</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" formControlName="name" class="form-control" id="name" placeholder="Product Name">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" formControlName="price" class="form-control" id="price" placeholder="Product Price">
+            </div>
+            <div class="mb-3">
+              <label for="checked" class="form-label">Checked</label>
+              <input type="checkbox" formControlName="checked" class="form-check-input" id="checked">
+            </div>
+            <button [disabled]="productForm.invalid" type="submit" class="btn btn-success">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

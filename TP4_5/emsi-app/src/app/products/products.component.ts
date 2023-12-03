@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -47,7 +45,7 @@ export class ProductsComponent implements OnInit{
     if (confirm(`Are you sure you want to delete ${product.name}?`))
     this.productService.deleteProduct(product)
       .subscribe({
-        next : value => {
+        next : () =>{
           this.products = this.products.filter(p => p.id !== product.id);
         }
       });
