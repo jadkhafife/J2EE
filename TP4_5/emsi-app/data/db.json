@@ -14,9 +14,9 @@
     },
     {
       "id": 3,
-      "name": "Mouse",
-      "price": 50,
-      "checked": false
+      "name": "Mouse1",
+      "price": "500",
+      "checked": true
     },
     {
       "id": 4,
@@ -29,6 +29,12 @@
       "name": "Printer",
       "price": 200,
       "checked": false
+    },
+    {
+      "name": "ggggg",
+      "price": 4441,
+      "checked": false,
+      "id": 6
     }
   ]
 }
