@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
       .then(resp =>
       {
         console.log(resp);
-        this.router.navigateByUrl('/admin');
+        this.router.navigateByUrl('/admin/products');
       })
       .catch((error)=>{
         this.errorMessage = error;

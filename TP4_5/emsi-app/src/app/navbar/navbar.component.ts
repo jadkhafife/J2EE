@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {NgForOf, NgIf} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-    imports: [
-        NgForOf,
-        RouterLink
-    ],
+  imports: [
+    NgForOf,
+    RouterLink,
+    NgIf
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 
-    constructor() { }
+    constructor(public appState:AppStateService, private router:Router) { }
 
   actions : Array<any> = [
     {title: 'Home', "route": '/home', icon: 'house'},
@@ -28,4 +30,12 @@ export class NavbarComponent {
     this.currentAction = action;
   }
 
+  logout() {
+    // this.appState.setAuthState={isAuthenticated: false};
+    this.router.navigateByUrl('/login');
+  }
+
+  login() {
+    this.router.navigateByUrl('/login');
+  }
 }

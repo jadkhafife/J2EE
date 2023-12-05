@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,8 @@ import {Router} from "@angular/router";
   imports: [
     NgForOf,
     FormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -23,7 +25,7 @@ export class ProductsComponent implements OnInit{
   pageSize: number = 3;
   currentPage: number = 1;
 
-  constructor(private productService: ProductService, private router:Router) {}
+  constructor(private productService: ProductService, private router:Router, public appState:AppStateService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -66,16 +68,6 @@ export class ProductsComponent implements OnInit{
       });
 
   }
-
-  // handleSearchProduct() {
-  //   this.currentPage = 1;
-  //   this.totalPages = 0;
-  //   this.productService.searchProduct(this.keyword, this.currentPage, this.pageSize)
-  //     .subscribe({
-  //       next : data => {this.products = data},
-  //       error : error => {console.log(error)}
-  //     });
-  // }
 
   handleGotoPage(number: number) {
     this.currentPage = number;

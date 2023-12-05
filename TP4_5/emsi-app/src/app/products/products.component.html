@@ -11,19 +11,19 @@
         <tr>
           <th>Product Name</th>
           <th>Product Price</th>
-          <th>Checked</th>
+          <th *ngIf="appState.authState.roles.includes('ADMIN')">Checked</th>
         </tr>
         </thead>
         <tbody *ngFor="let product of products">
           <td>{{product.name}}</td>
           <td>{{product.price}}</td>
-          <td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')">
             <button class="btn btn-success" (click)="handleCheckProduct(product)" ><i [class]="product.checked?'bi bi-hand-thumbs-up':'bi bi-hand-thumbs-down'"></i></button>
           </td>
-          <td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')">
             <button class="btn btn-danger" (click)="handleDeleteProduct(product)" ><i class="bi bi-trash"></i></button>
           </td>
-          <td>
+          <td *ngIf="appState.authState.roles.includes('ADMIN')">
             <button class="btn btn-primary" (click)="handleEditProduct(product)" ><i class="bi bi-pencil"></i></button>
           </td>
         </tbody>
