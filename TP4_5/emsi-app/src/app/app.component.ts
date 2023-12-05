@@ -13,15 +13,5 @@ import {HttpClientModule} from "@angular/common/http";
 export class AppComponent {
   title = 'emsi-app';
 
-  actions : Array<any> = [
-    {title: 'Home', "route": '/home', icon: 'house'},
-    {title: 'Products', "route": '/products', icon: 'list'},
-    {title: 'New Product', "route": '/newProduct', icon: 'plus'}
-  ];
 
-  currentAction : any;
-
-  setCurrentAction(action: any) {
-    this.currentAction = action;
-  }
 }

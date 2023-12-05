@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit {
       .subscribe({
         next : (updatedProduct)=>{
           alert(`Product ${updatedProduct.name} has been updated successfully`);
-          this.router.navigateByUrl("/products").then(r => console.log("navigate to products"));
+          this.router.navigateByUrl("/admin/products").then(r => console.log("navigate to products"));
         },
         error : error => {
           console.log(error);
