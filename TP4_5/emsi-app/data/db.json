@@ -3,13 +3,18 @@
     {
       "id": "admin",
       "password": "YWRtaW4=",
-      "roles":["USER","ADMIN"],
+      "roles": [
+        "USER",
+        "ADMIN"
+      ],
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTUxNjIzOTAyMiwiZmlyc3RuYW1lIjoiQTEiLCJsYXN0bmFtZSI6IkExIiwiZW1haWwiOiJhMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iXX0.mj1A1zQyY4SezeO07pTRmNlTAJcd9h6EHz9s1D3eoyg"
     },
     {
       "id": "user",
       "password": "dXNlcg==",
-      "roles":["USER"],
+      "roles": [
+        "USER"
+      ],
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNTE2MjM5MDIyLCJmaXJzdG5hbWUiOiJVMSIsImxhc3RuYW1lIjoiVTEiLCJlbWFpbCI6InUxQGdtYWlsLmNvbSIsInJvbGVzIjpbIlVTRVIiXX0.29RSt3LK6QVAZkXJscqIcT3XTpctEVXskvL8PgSX9tM"
     }
   ],
@@ -25,12 +30,6 @@
       "name": "Monitor",
       "price": 300,
       "checked": false
-    },
-    {
-      "id": 3,
-      "name": "Mouse1",
-      "price": "500",
-      "checked": true
     },
     {
       "id": 4,
@@ -55,6 +54,12 @@
       "price": 454,
       "checked": true,
       "id": 7
+    },
+    {
+      "name": "dddd",
+      "price": 2000,
+      "checked": true,
+      "id": 8
     }
   ]
 }
