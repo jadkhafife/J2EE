@@ -1,0 +1,35 @@
+
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Style pour le tableau */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
