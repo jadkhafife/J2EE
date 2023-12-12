@@ -1,0 +1,8 @@
+services:
+  emsi-discovery-service:
+    build: ./discovery-service
+    container_name: emsi-discovery-service
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
