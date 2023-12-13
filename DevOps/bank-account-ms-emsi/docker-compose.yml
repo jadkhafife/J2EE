@@ -17,6 +17,8 @@ services:
       - "9999:9999"
     expose:
       - "9999"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://emsi-discovery-service:8761/eureka
     depends_on:
       emsi-discovery-service:
         condition: service_healthy
