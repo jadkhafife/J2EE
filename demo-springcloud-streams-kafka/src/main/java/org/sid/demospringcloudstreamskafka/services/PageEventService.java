@@ -10,6 +10,7 @@ import org.sid.demospringcloudstreamskafka.entities.PageEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Random;
@@ -20,47 +21,41 @@ import java.util.function.Supplier;
 @Service
 public class PageEventService {
     @Bean
-    public Consumer<PageEvent> pageEventConsumer(){
+    public Consumer<PageEvent> PageEventConsumer() {
         return (input) -> {
-            System.out.println("******************");
+            System.out.println("***********");
             System.out.println(input.toString());
-            System.out.println("******************");
+            System.out.println("***********");
         };
     }
-
     @Bean
-    public Supplier<PageEvent> pageEventSupplier(){
-        return () -> {
-            PageEvent pageEvent =  new PageEvent(
-                    Math.random()>0.5?"page1":"page2",
-                    Math.random()>0.5?"user1":"user2",
-                    new Date(),
-                    (long) new Random().nextInt(9000));
-            return pageEvent;
-        };
+    public Supplier<PageEvent> PageEventSupplier() {
+        return ()->  new PageEvent(Math.random()>0.5?"P1":"P2",
+                Math.random()>0.5?"U1":"U2",
+                new Date(),
+                new Random().nextInt(9000));
     }
-
     @Bean
-    public Function<PageEvent, PageEvent> pageEventFunction(){
-        return (input) -> {
-            input.setName("L"+input.getName().length());
-            input.setUser("UUUUUUUUUUU");
+    public Function<PageEvent,PageEvent> PageEventFunction(){
+        return  (input)->{
+            input.setName("Page Event");
+            input.setUser("JAD");
             return input;
+
+        };
+    }
+    @Bean
+    public  Function<KStream<String,PageEvent>,KStream<String,Long>> KstreamFunction(){
+        return  (input)->{
+            return input
+                    .filter((k,v)->v.getDuration()>100)
+                    .map((k,v)->new KeyValue<>(v.getName(),0L))
+                    .groupBy((k,v)->k,Grouped.with(Serdes.String(),Serdes.Long()))
+                    .windowedBy(TimeWindows.of(Duration.ofSeconds(5)))
+                    .count(Materialized.as("page-count"))
+                    .toStream()
+                    .map((k,v)->new KeyValue<>("=>"+k.window().startTime()+k.window().endTime()+k.key(),v));
         };
     }
 
-    @Bean
-    public Function<KStream<String, PageEvent>, KStream<String, Long>> kStreamFunction(){
-        return (input) -> {
-            return input
-                    .filter((k,v) -> v.getDuration()>100)
-                    .mapValues((k,v) -> new KeyValue<>(v.getName(), 0L))
-                    .groupBy((k,v) -> k)
-                    .windowedBy(TimeWindows.of(Duration.ofMillis(5000)))
-                    .count(Materialized.as("pageCount"))
-                    .toStream()
-                    .map((k,v) -> new KeyValue<>("=>"+k.window().startTime()+k.window().endTime(), v));
-//                    .groupByKey(Grouped.keySerde(Serdes.String()))
-        };
-    }
 }
