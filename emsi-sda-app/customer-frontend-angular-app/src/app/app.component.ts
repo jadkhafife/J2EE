@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SecurityService } from './services/security.service';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 
@@ -14,7 +13,7 @@ export class AppComponent implements OnInit{
 
   public profile? : KeycloakProfile;
 
-  constructor(public securityService : SecurityService, private keycloakService: KeycloakService) {
+  constructor(public keycloakService: KeycloakService) {
 
   }
 
